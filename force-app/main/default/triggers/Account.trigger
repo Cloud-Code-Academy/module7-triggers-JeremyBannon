@@ -11,6 +11,9 @@ trigger Account on Account (before insert) {
                 acc.BillingPostalCode = acc.ShippingPostalCode;
                 acc.BillingCountry = acc.ShippingCountry;
             }
+            if(acc.Phone != null && acc.Website != null && acc.Fax != null){
+                acc.Rating = 'Hot';
+            }
             
         }
     }
