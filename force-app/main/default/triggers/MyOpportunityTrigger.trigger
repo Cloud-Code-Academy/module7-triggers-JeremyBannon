@@ -17,7 +17,8 @@ trigger MyOpportunityTrigger on Opportunity (before update, before delete) {
             }  
         }
     }
+    // Question #7
     if(Trigger.isAfter){
-        
+
     }
 }
