@@ -1,6 +1,6 @@
-trigger Account on Account (before insert) {
-    if(Trigger.isInsert){
-        List<Contact> conList = new List<Contact>();
+trigger Account on Account (before insert, after insert) {
+    if(Trigger.isBefore){
+        
         for(Account acc : Trigger.new){
             //Question #1
             if(acc.Type == null){
@@ -18,13 +18,21 @@ trigger Account on Account (before insert) {
             if(acc.Phone != null && acc.Website != null && acc.Fax != null){
                 acc.Rating = 'Hot';
             }
-            //Question #4 (Still Working)
-            Contact con = new Contact();
-                con.LastName ='DefaultContact';
-                con.Email = 'default@email.com';
-                con.AccountId = acc.Id;
-                conList.add(con);
         }
-        insert conList;
     }
+    if(Trigger.isAfter){
+        List<Contact> conList = new List<Contact>();
+        //Question #4 (Still Working)
+        for(Account acc : Trigger.new){
+            
+        Contact con = new Contact();
+        con.LastName ='DefaultContact';
+        con.Email = 'default@email.com';
+        con.AccountId = acc.Id;
+        conList.add(con);
+        }
+        insert conList;   
+    }
+    
 }
+
