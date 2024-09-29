@@ -8,7 +8,7 @@ trigger MyOpportunityTrigger on Opportunity (before update, before delete, after
             }
         }
     }
-    // Question #6: Prevent delete if Opportunity is 'Closed Won'
+    // Question #6: Prevent delete if Opportunity is 'Closed Won' and Account Industry is Banking
     if (Trigger.isDelete) {
         Set<Id> accountIds = new Set<Id>();
         for (Opportunity opp : Trigger.old) {
